@@ -60,12 +60,6 @@ public class PipeLine {
         KGroupedStream<String, String> kGroupedStream = source.flatMapValues((value) -> {
             String[] arr = value.split("\\|");
             int length = arr.length;
-            System.out.println(arr[length - 1]);
-            try {
-                Thread.sleep(1000L);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
             return Arrays.asList(arr[length - 1]);
         }).groupBy((key, value) -> value, stringSerde, stringSerde);
 
